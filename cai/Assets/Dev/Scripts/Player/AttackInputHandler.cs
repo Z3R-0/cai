@@ -7,18 +7,29 @@ public class AttackInputHandler : MonoBehaviour {
     public GameObject hitbox;
 
     private int killHitbox;
+    private int recoveryTime;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+    // Use this for initialization
+    void Start() {
+        hitbox.SetActive(false);
+    }
+
+    // Update is called once per frame
+    void Update() {
         if (Input.GetButton("RightBumper")) {
             hitbox.SetActive(true);
-        } else if (killHitbox == 100) {
-            return;
+            StartCoroutine(Timer());
         }
-	}
+
+        if (killHitbox == 13) {
+            hitbox.SetActive(false);
+            killHitbox = 0;
+        }
+        killHitbox++;
+    }
+    //NOT WORKING
+    IEnumerator Timer() {
+        yield return new WaitForSeconds(0.5f);
+    }
 }
+

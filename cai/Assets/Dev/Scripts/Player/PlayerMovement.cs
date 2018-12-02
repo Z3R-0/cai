@@ -19,5 +19,8 @@ public class PlayerMovement : MonoBehaviour {
         axisY = Input.GetAxis("LeftJoystickHorizontal") * speed * Time.deltaTime;
        
         transform.position -= new Vector3(axisX, 0, axisY);
-	}
+        if (new Vector3(axisX, 0, axisY) != Vector3.zero) {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(axisX, 0, axisY).normalized), 0.1f);
+        }
+    }
 }
