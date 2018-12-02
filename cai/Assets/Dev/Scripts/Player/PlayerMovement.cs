@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour {
         //Get input from joysticks and move per second rather than per frame
         axisX = Input.GetAxis("LeftJoystickVertical") * speed * Time.deltaTime;
         axisY = Input.GetAxis("LeftJoystickHorizontal") * speed * Time.deltaTime;
-
+       
         transform.position -= new Vector3(axisX, 0, axisY);
 	}
 }
